@@ -19,7 +19,8 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
-    if ((e?.key === "Enter" || e === "searchBtn") && searchQuery?.length > 0) {
+    console.log(e);
+    if ((e?.key === "Enter" || e.type === "click") && searchQuery?.length > 0) {
       navigate(`/searchResults/${searchQuery}`);
     }
   };
@@ -69,7 +70,10 @@ const Header = () => {
             onKeyUp={handleSearch}
           />
         </div>
-        <button className="w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.1]">
+        <button
+          className="w-[40px] md:w-[60px] h-8 md:h-10 flex items-center justify-center border border-l-0 border-[#303030] rounded-r-3xl bg-white/[0.1]"
+          onClick={handleSearch}
+        >
           <IoIosSearch className="text-white text-xl"></IoIosSearch>
         </button>
       </div>

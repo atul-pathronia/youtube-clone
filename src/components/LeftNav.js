@@ -6,7 +6,8 @@ import { categories } from "../utils/constants";
 import { Context } from "../context/contextApi";
 
 const LeftNav = () => {
-  const { selectCategory, setselectCategory, mobileView } = useContext(Context);
+  const { selectCategory, setselectCategory, mobileView, setmobileView } =
+    useContext(Context);
   const navigate = useNavigate();
   const categoryHanlder = (name, type) => {
     if (type === "category") {
@@ -22,8 +23,8 @@ const LeftNav = () => {
 
   return (
     <div
-      className={`md:block w-[240px] overflow-y-auto h-full py-4 bg-black absolute md:relative z-10 translate-x-[-240px] md:translate-x-0 transition-all ${
-        mobileView ? "translate-x-0" : null
+      className={`md:block w-[240px] overflow-y-auto h-full py-4 bg-black absolute md:relative z-10  md:translate-x-0 transition-all ${
+        mobileView ? "translate-x-0" : "translate-x-[-240px]"
       }`}
     >
       <div className="flex px-5 flex-col">
@@ -37,6 +38,9 @@ const LeftNav = () => {
                 action={() => {
                   categoryHanlder(item.name, item.type);
                   navigate("/");
+                  // if (mobileView) {
+                  //   setmobileView(false);
+                  // }
                 }}
                 className={`${
                   selectCategory === item.name ? "bg-white/[0.15]" : ""
